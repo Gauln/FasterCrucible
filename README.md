@@ -3,6 +3,8 @@
 A small **server-side** mod for [Vintage Story](https://www.vintagestory.at/) that speeds up
 metal smelting in the **crucible**.
 
+📦 **[Download on ModDB](https://mods.vintagestory.at/show/mod/54694)** · [Releases](https://github.com/Gauln/FasterCrucible/releases)
+
 ## The problem
 
 In Vintage Story the crucible's smelting time grows with the amount of ore inside it. The game
@@ -34,8 +36,9 @@ The crucible smelting duration is divided by **5** (five times faster). This val
 
 ## Installation
 
-1. Download the latest `FasterCrucible.zip` from the
-   [Releases](https://github.com/Gauln/FasterCrucible/releases) page (or from ModDB).
+1. Download the latest `FasterCrucible.zip` from
+   [ModDB](https://mods.vintagestory.at/show/mod/54694) or the
+   [Releases](https://github.com/Gauln/FasterCrucible/releases) page.
 2. Copy the **zip** (do not unzip it) into your `VintagestoryData/Mods` folder.
 3. Restart the game/server.
 
