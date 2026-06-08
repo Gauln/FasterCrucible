@@ -1,0 +1,9 @@
+{
+  "type": "code",
+  "modid": "fastercrucible",
+  "name": "Faster Crucible",
+  "description": "Server-side mod that speeds up metal smelting in the crucible. This mod divides the crucible smelting duration by 5x. Heating to temperature and everything else is left untouched.",
+  "authors": [ "Gauln" ],
+  "version": "1.0.0",
+  "side": "Server"
+}

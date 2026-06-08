@@ -1,0 +1,52 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <AssemblyName>FasterCrucible</AssemblyName>
+    <RootNamespace>FasterCrucible</RootNamespace>
+    <!--
+      Set VintageStoryDir to your game installation folder, e.g.:
+        Windows (Steam):  C:\Program Files (x86)\Steam\steamapps\common\Vintagestory
+        Windows (manual): C:\Games\Vintagestory
+      You can also set it as an environment variable to avoid editing this file.
+    -->
+    <VintageStoryDir Condition="'$(VintageStoryDir)' == ''">J:\Torr\Games\VintageStory</VintageStoryDir>
+    <ModOutputDir>$(MSBuildProjectDirectory)\bin\mod</ModOutputDir>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- VS API -->
+    <Reference Include="VintagestoryAPI">
+      <HintPath>$(VintageStoryDir)\VintagestoryAPI.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <!-- Survival mod (contains BlockSmeltingContainer, i.e. the crucible) -->
+    <Reference Include="VSSurvivalMod">
+      <HintPath>$(VintageStoryDir)\Mods\VSSurvivalMod.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <!-- Harmony (ships with the game) -->
+    <Reference Include="0Harmony">
+      <HintPath>$(VintageStoryDir)\Lib\0Harmony.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+  <!--
+    After build: copy the DLL and modinfo.json into bin\mod\,
+    then create the zip ready for the Mods folder.
+  -->
+  <Target Name="PackageMod" AfterTargets="Build">
+    <MakeDir Directories="$(ModOutputDir)" />
+    <Copy SourceFiles="$(OutputPath)$(AssemblyName).dll" DestinationFolder="$(ModOutputDir)" />
+    <Copy SourceFiles="$(MSBuildProjectDirectory)\modinfo.json" DestinationFolder="$(ModOutputDir)" />
+    <ZipDirectory SourceDirectory="$(ModOutputDir)"
+                  DestinationFile="$(MSBuildProjectDirectory)\bin\$(AssemblyName).zip"
+                  Overwrite="true" />
+    <Message Text="Mod packaged: $(MSBuildProjectDirectory)\bin\$(AssemblyName).zip" Importance="high" />
+  </Target>
+
+</Project>
